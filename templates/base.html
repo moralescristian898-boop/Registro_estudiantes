@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>{% block titulo %}Registro de Estudiantes{% endblock %}</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+</head>
+<body>
+   <header class="encabezado">
+       <h1>Registro de Estudiantes</h1>
+       <nav>
+           <a href="{{ url_for('index') }}">Registrar</a>
+           <a href="{{ url_for('listar') }}">Listado</a>
+       </nav>
+   </header>
+
+   <main class="contenedor">
+       {% block contenido %}{% endblock %}
+   </main>
+
+   <footer class="pie">
+       <p>Proyecto Flask - Programación I</p>
+   </footer>
+</body>
+</html>
