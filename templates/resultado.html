@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block titulo %}Resultado{% endblock %}
+
+{% block contenido %}
+{% if accion == "error" %}
+   <h2>Errores encontrados</h2>
+   <ul class="errores">
+       {% for error in errores %}
+       <li>{{ error }}</li>
+       {% endfor %}
+   </ul>
+   <p><a href="javascript:history.back()" class="boton">Volver</a></p>
+{% elif accion == "registrado" %}
+   <h2>Estudiante registrado correctamente</h2>
+   <table class="tabla-detalle">
+       <tr><th>ID</th><td>{{ estudiante.id }}</td></tr>
+       <tr><th>Nombre</th><td>{{ estudiante.nombre }}</td></tr>
+       <tr><th>Edad</th><td>{{ estudiante.edad }} años</td></tr>
+       <tr><th>Correo</th><td>{{ estudiante.correo }}</td></tr>
+       <tr><th>Programa</th><td>{{ estudiante.programa }}</td></tr>
+   </table>
+   <p>
+       <a href="{{ url_for('index') }}" class="boton">Registrar otro</a>
+       <a href="{{ url_for('listar') }}" class="boton">Ver listado</a>
+   </p>
+{% elif accion == "actualizado" %}
+   <h2>Estudiante actualizado correctamente</h2>
+   <table class="tabla-detalle">
+       <tr><th>ID</th><td>{{ estudiante.id }}</td></tr>
+       <tr><th>Nombre</th><td>{{ estudiante.nombre }}</td></tr>
+       <tr><th>Edad</th><td>{{ estudiante.edad }} años</td></tr>
+       <tr><th>Correo</th><td>{{ estudiante.correo }}</td></tr>
+       <tr><th>Programa</th><td>{{ estudiante.programa }}</td></tr>
+   </table>
+   <p>
+       <a href="{{ url_for('listar') }}" class="boton">Ver listado</a>
+       <a href="{{ url_for('index') }}" class="boton">Registrar otro</a>
+   </p>
+{% endif %}
+{% endblock %}
