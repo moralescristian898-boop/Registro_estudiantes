@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block titulo %}Listado de Estudiantes{% endblock %}
+
+{% block contenido %}
+<h2>Estudiantes registrados</h2>
+
+<p class="resumen">
+   Total: <strong>{{ total }}</strong> |
+   Promedio de edad: <strong>{{ promedio }} años</strong>
+</p>
+
+{% if estudiantes %}
+<table class="tabla">
+   <thead>
+       <tr>
+           <th>#</th>
+           <th>Nombre</th>
+           <th>Edad</th>
+           <th>Correo</th>
+           <th>Programa</th>
+           <th>Acciones</th>
+       </tr>
+   </thead>
+   <tbody>
+       {% for e in estudiantes %}
+       <tr>
+           <td>{{ e.id }}</td>
+           <td>{{ e.nombre }}</td>
+           <td>{{ e.edad }}</td>
+           <td>{{ e.correo }}</td>
+           <td>{{ e.programa }}</td>
+           <td class="acciones">
+               <a href="{{ url_for('detalle', id=e.id) }}">Ver</a>
+               <a href="{{ url_for('editar', id=e.id) }}">Editar</a>
+               <form action="{{ url_for('eliminar', id=e.id) }}" method="POST" onsubmit="return confirm('¿Eliminar este estudiante?');">
+                   <button type="submit" class="boton-eliminar">Eliminar</button>
+               </form>
+           </td>
+       </tr>
+       {% endfor %}
+   </tbody>
+</table>
+{% else %}
+<p>No hay estudiantes registrados todavía.</p>
+{% endif %}
+
+<p><a href="{{ url_for('index') }}" class="boton">Registrar otro estudiante</a></p>
+{% endblock %}
